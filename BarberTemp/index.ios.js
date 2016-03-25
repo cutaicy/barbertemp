@@ -8,24 +8,33 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator
 } from 'react-native';
+var Authenticate = require('./MainComponents/Welcome/Authenticate');
 
 class BarberTemp extends Component {
+  renderScene(route, navigator) {
+    var Component = route.component;
+    return(
+        <Component
+          navigator = {navigator}
+          props = {route.props}/>
+    )
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Navigator
+        initialRoute = {{component: Authenticate}}
+        renderScene={this.renderScene}
+        configureScene={(route) => {
+        if (route.sceneConfig) {
+          return route.sceneConfig;
+        }
+        return Navigator.SceneConfigs.FloatFromRight;
+      }} />
+
     );
   }
 }
