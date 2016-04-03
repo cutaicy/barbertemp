@@ -2,6 +2,7 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  */
+var Authenticate = require('./MainComponents/Welcome/Authenticate');
 
 import React, {
   AppRegistry,
@@ -9,21 +10,24 @@ import React, {
   StyleSheet,
   Text,
   View,
-  Navigator
+  Navigator,
+  StatusBar,
+
 } from 'react-native';
-var Authenticate = require('./MainComponents/Welcome/Authenticate');
+
 
 class BarberTemp extends Component {
   renderScene(route, navigator) {
     var Component = route.component;
     return(
-        <Component
-          navigator = {navigator}
-          props = {route.props}/>
+      <Component
+        navigator = {navigator}
+        props = {route.props}/>
     )
   }
 
   render() {
+    StatusBar.setHidden
     return (
       <Navigator
         initialRoute = {{component: Authenticate}}
@@ -38,24 +42,5 @@ class BarberTemp extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('BarberTemp', () => BarberTemp);
